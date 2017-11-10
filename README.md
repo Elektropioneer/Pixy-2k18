@@ -6,6 +6,8 @@ Things you need:
 The camera we are using is the Pixy camera, we can check what it sees through a software called ''PixyMon''
 For communication with the camera we are using an arduino microcontrollers.
 For programming itself we are using Arduino IDE since it contains libraries to make the whole work easier (check in header file).
+I inserted all the libraries you can download if you want to use each type of communication, we are only using SPI.
+In another case, you can download whole library here: http://www.cmucam.org/projects/cmucam5/wiki/Latest_release
 
 How to set up:
 
