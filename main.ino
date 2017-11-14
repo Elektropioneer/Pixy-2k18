@@ -28,6 +28,12 @@
 #define PIND4 4
 #define PIND5 5
 
+/*           Defining colors          */
+#define GREEN 1
+#define YELLOW 2
+#define BLUE 3
+#define ORANGE 5
+
 // This is the main Pixy object 
 Pixy pixy;
 
@@ -47,7 +53,7 @@ void setup()
 
 void loop()
 { 
-  uint16_t blocks;                    //
+  uint16_t blocks;                    
   int niz[3] = {0,0,0};               //Array in which we sort the signatures according to x-axis
 
    blocks = pixy.getBlocks();         //Getting all the information about the blocks
@@ -86,20 +92,56 @@ void loop()
       niz[1] = pixy.blocks[0].signature;
     }
   }
-           //Sending a signal according to combinations provided
-  if(niz[2]== 1 && niz[1] == 2 && niz[0] == 3)      //Combination num.2        
+           //Sending a signal according to combinations provided (3 blocks)
+  if(niz[2]== GREEN && niz[1] == YELLOW && niz[0] == BLUE)      //Combination num.2        
     digitalWrite(PIND3, HIGH);
-  if(niz[2]== 3 && niz[1] == 1 && niz[0] == 5){     //Combination num.5
+  if(niz[2]== BLUE && niz[1] == GREEN && niz[0] == ORANGE){     //Combination num.5
     digitalWrite(PIND2, HIGH);
     digitalWrite(PIND4, HIGH);
   }
-  if(niz[2]== 1 && niz[1] == 5 && niz[0] == 2){     //Combination num.6
+  if(niz[2]== GREEN && niz[1] == ORANGE && niz[0] == YELLOW){   //Combination num.6
     digitalWrite(PIND3, HIGH);
     digitalWrite(PIND4, HIGH);
   }
-  if(niz[2]== 5 && niz[1] == 3 && niz[0] == 2){     //Combination num.10
+  if(niz[2]== ORANGE && niz[1] == BLUE && niz[0] == YELLOW){    //Combination num.10
     digitalWrite(PIND5, HIGH);
     digitalWrite(PIND3, HIGH);
+  }
+ }
+ 
+ if (blocks==2){                        //For two colors, ignoring black, doesn't matter if it's there or nah
+   if (pixy.blocks[0].x > pixy.blocks[1].x){                   //Sorting of an array by x-axis (if first block is larger)
+     niz[0] = pixy.blocks[0].signature;
+     niz[1] = pixy.blocks[1].signature;
+   }
+   if (pixy.blocks[1].x > pixy.blocks[0].x){                  //Sorting of an array by x-axis (if second block is larger)
+     niz[1] = pixy.blocks[0].signature;
+     niz[0] = pixy.blocks[1].signature;
+   }
+   
+   
+          //Sending a signal according to combinations provided (2 blocks)
+  if(niz[1] == ORANGE && niz[0] == GREEN){                          //Combination num.1
+    digitalWrite(PIND2, HIGH);
+  }
+  if(niz[1] == YELLOW && niz[0] == BLUE){                        //Combination num.3
+    digitalWrite(PIND2, HIGH);
+    digitalWrite(PIND3, HIGH);
+  }
+  if(niz[1] == BLUE && niz[0] == ORANGE){                           //Combination num.4  
+    digitalWrite(PIND4, HIGH);
+  }
+  if(niz[1] == YELLOW && niz[0] == GREEN){                       //Combination num.7  
+    digitalWrite(PIND2, HIGH);
+    digitalWrite(PIND3, HIGH);
+    digitalWrite(PIND4, HIGH);
+  }
+  if(niz[1] == BLUE && niz[0] == GREEN){                         //Combination num.8
+    digitalWrite(PIND5, HIGH);
+  }
+  if(niz[1] == YELLOW && niz[0] == ORANGE){                      //Combination num.9
+    digitalWrite(PIND2, HIGH);
+    digitalWrite(PIND5, HIGH);
   }
  }
 }
