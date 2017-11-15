@@ -40,10 +40,10 @@ Pixy pixy;
 void setup()
 {
   //Defining pins as outputs
-  pinMode(PIN2, OUTPUT);  
-  pinMode(PIN3, OUTPUT);
-  pinMode(PIN4, OUTPUT);
-  pinMode(PIN5, OUTPUT);
+  pinMode(PIND2, OUTPUT);  
+  pinMode(PIND3, OUTPUT);
+  pinMode(PIND4, OUTPUT);
+  pinMode(PIND5, OUTPUT);
   Serial.begin(9600);                 //Defining Baud Rate
   Serial.print("Starting...\n");      //Useless garbage
 
