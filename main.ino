@@ -57,39 +57,46 @@ void loop()
   int niz[3] = {0,0,0};               //Array in which we sort the signatures according to x-axis
 
    blocks = pixy.getBlocks();         //Getting all the information about the blocks
+   int first_block_x = pixy.blocks[0].x;              //Variables for easier code understanding
+   int second_block_x = pixy.blocks[1].x;
+   int third_block_x = pixy.blocks[2].x;
+  
+   int first_block_signature = pixy.blocks[0].signature;
+   int second_block_signature = pixy.blocks[1].signature;
+   int third_block_signature = pixy.blocks[2].signature;
 
    if (blocks == 3){                  //Only for three colors without black
 
-   if (pixy.blocks[0].x > pixy.blocks[1].x && pixy.blocks[0].x > pixy.blocks[2].x) {        //Sorting of an array by x-axis (if first block is larger than the rest) 
-    niz[0] = pixy.blocks[0].signature;
-    if (pixy.blocks[1].x > pixy.blocks[2].x){
-      niz[1] = pixy.blocks[1].signature;
-      niz[2] = pixy.blocks[2].signature;
+   if (first_block_x > second_block_x && first_block_x > third_block_x) {        //Sorting of an array by x-axis (if first block is larger than the rest) 
+    niz[0] = first_block_signature;
+    if (second_block_x > third_block_x){
+      niz[1] = second_block_signature;
+      niz[2] = third_block_signature;
     }else{
-      niz[2] = pixy.blocks[1].signature;
-      niz[1] = pixy.blocks[2].signature;
+      niz[2] = second_block_signature;
+      niz[1] = third_block_signature;
     }
   }
 
-  if (pixy.blocks[1].x > pixy.blocks[0].x && pixy.blocks[1].x > pixy.blocks[2].x) {         //Sorting of an array by x-axis (if second block is larger than the rest)
-    niz[0] = pixy.blocks[1].signature;
-    if (pixy.blocks[0].x > pixy.blocks[2].x){
-      niz[1] = pixy.blocks[0].signature;
-      niz[2] = pixy.blocks[2].signature;
+  if (second_block_x > first_block_x && second_block_x > third_block_x) {         //Sorting of an array by x-axis (if second block is larger than the rest)
+    niz[0] = second_block_signature;
+    if (first_block_x > third_block_x){
+      niz[1] = first_block_signature;
+      niz[2] = third_block_signature;
     }else{
-      niz[2] = pixy.blocks[0].signature;
-      niz[1] = pixy.blocks[2].signature;
+      niz[2] = first_block_signature;
+      niz[1] = third_block_signature;
     }
   }
 
-  if (pixy.blocks[2].x > pixy.blocks[1].x && pixy.blocks[2].x > pixy.blocks[0].x) {         //Sorting of an array by x-axis (if third block is larger than the rest)
-    niz[0] = pixy.blocks[2].signature;
-    if (pixy.blocks[1].x > pixy.blocks[0].x){
-      niz[1] = pixy.blocks[1].signature;
-      niz[2] = pixy.blocks[0].signature;
+  if (third_block_x > second_block_x && third_block_x > first_block_x) {         //Sorting of an array by x-axis (if third block is larger than the rest)
+    niz[0] = third_block_signature;
+    if (second_block_x > first_block_x){
+      niz[1] = second_block_signature;
+      niz[2] = first_block_signature;
     }else{
-      niz[2] = pixy.blocks[1].signature;
-      niz[1] = pixy.blocks[0].signature;
+      niz[2] = second_block_signature;
+      niz[1] = first_block_signature;
     }
   }
            //Sending a signal according to combinations provided (3 blocks)
@@ -110,13 +117,13 @@ void loop()
  }
  
  if (blocks==2){                        //For two colors, ignoring black, doesn't matter if it's there or nah
-   if (pixy.blocks[0].x > pixy.blocks[1].x){                   //Sorting of an array by x-axis (if first block is larger)
-     niz[0] = pixy.blocks[0].signature;
-     niz[1] = pixy.blocks[1].signature;
+   if (first_block_x > second_block_x){                   //Sorting of an array by x-axis (if first block is larger)
+     niz[0] = first_block_signature;
+     niz[1] = second_block_signature;
    }
-   if (pixy.blocks[1].x > pixy.blocks[0].x){                  //Sorting of an array by x-axis (if second block is larger)
-     niz[1] = pixy.blocks[0].signature;
-     niz[0] = pixy.blocks[1].signature;
+   if (second_block_x > first_block_x){                  //Sorting of an array by x-axis (if second block is larger)
+     niz[1] = first_block_signature;
+     niz[0] = second_block_signature;
    }
    
    
