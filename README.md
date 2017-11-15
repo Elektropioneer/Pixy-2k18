@@ -1,4 +1,4 @@
-# Camera-2017
+# Camera-2018
 Pixy camera for 2017 robotics tournament.
 
 ## Things you need:
