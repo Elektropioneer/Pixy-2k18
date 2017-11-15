@@ -46,6 +46,16 @@ void setup()
   pinMode(PIND5, OUTPUT);
   Serial.begin(9600);                 //Defining Baud Rate
   Serial.print("Starting...\n");      //Useless garbage
+  
+  int first_block_x;
+  int second_block_x;
+  int third_block_x;
+    
+  int first_block_signature;
+  int second_block_signature;
+  int third_block_signature;
+  
+  int niz[3] = {0,0,0};               //Array in which we sort the signatures according to x-axis
 
   pixy.init();                        //Pixy define function
 }
@@ -53,17 +63,18 @@ void setup()
 
 void loop()
 { 
-  uint16_t blocks;                    
-  int niz[3] = {0,0,0};               //Array in which we sort the signatures according to x-axis
+  uint16_t blocks;   
+  
+   niz[3] = {0,0,0}; 
 
    blocks = pixy.getBlocks();         //Getting all the information about the blocks
-   int first_block_x = pixy.blocks[0].x;              //Variables for easier code understanding
-   int second_block_x = pixy.blocks[1].x;
-   int third_block_x = pixy.blocks[2].x;
+   first_block_x = pixy.blocks[0].x;              //Variables for easier code understanding
+   second_block_x = pixy.blocks[1].x;
+   third_block_x = pixy.blocks[2].x;
   
-   int first_block_signature = pixy.blocks[0].signature;
-   int second_block_signature = pixy.blocks[1].signature;
-   int third_block_signature = pixy.blocks[2].signature;
+   first_block_signature = pixy.blocks[0].signature;
+   second_block_signature = pixy.blocks[1].signature;
+   third_block_signature = pixy.blocks[2].signature;
 
    if (blocks == 3){                  //Only for three colors without black
 
