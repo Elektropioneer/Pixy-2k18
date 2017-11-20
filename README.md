@@ -1,5 +1,5 @@
 # Camera-2018
-Pixy camera for 2017 robotics tournament.
+Pixy camera for 2018 robotics tournament.
 
 ## Things you need:
 
